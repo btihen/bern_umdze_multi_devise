@@ -17,7 +17,7 @@ module Accessible
     elsif current_patron
       flash.clear
       # The authenticated user root path can be defined in your routes.rb in: devise_scope :user do...
-      redirect_to(auth_partron_root_path) and return
+      redirect_to(auth_patron_root_path) and return
     end
   end
 end

@@ -14,12 +14,14 @@ RSpec.describe Patron, type: :model do
   end
 
   describe "DB settings" do
-    it { is_expected.to have_db_index(:username) }
+    it { is_expected.to have_db_index(:email) }
+    # it { is_expected.to have_db_index(:username) }
     it { is_expected.to have_db_column(:encrypted_password) }
   end
 
   describe "validations" do
+    it { is_expected.to validate_presence_of(:email) }
+    # it { is_expected.to validate_presence_of(:username) }
     it { is_expected.to validate_presence_of(:password) }
-    it { is_expected.to validate_presence_of(:username) }
   end
 end

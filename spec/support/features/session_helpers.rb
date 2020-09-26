@@ -11,9 +11,10 @@ module Features
       patron = FactoryBot.create :patron if patron.nil?
       visit new_patron_session_path
       expect(page).to have_button('Log in')
-      fill_in 'Username', with: patron.username
+      fill_in 'Email', with: patron.email
       fill_in 'Password', with: patron.password
       click_on 'Log in'
+      # expect(current_path).to eql(patron_home_path)
     end
 
     # def umdze_sign_up(email:, password:)
@@ -25,10 +26,10 @@ module Features
     # end
     def umdze_log_in(umdze = nil)
       umdze = FactoryBot.create :umdze if umdze.nil?
-      visit new_admin_session_path
+      visit new_umdze_session_path
       expect(page).to have_button('Log in')
-      fill_in 'Email', with: admin.email
-      fill_in 'Password', with: admin.password
+      fill_in 'Email', with: umdze.email
+      fill_in 'Password', with: umdze.password
       click_on 'Log in'
     end
 
