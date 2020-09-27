@@ -1,2 +1,22 @@
-<h1>Admins::Home#index</h1>
-<p>Find me in app/views/admins/home/index.html.erb</p>
+<p hidden id='admin_calendar_index' class='pageName'>Admin-<%= current_admin.id %> Calendar</p>
+<div class="container">
+
+  <div class="columns is-centered is-multiline">
+    <% spaces_view.each do |space_view| %>
+    <div class="column is-full-mobile is-half-tablet is-one-third-widescreen is-centered">
+      <p class="title is-6">
+        <%= link_to space_view.space_name,
+                    tenant_space_path(tenant_id: tenant_view.id, id: space_view.id),
+                    class: "card-footer-item" %>
+      </p>
+      <%= render 'calendar', user_view: user_view, space_view: space_view,
+                              tenant_view: tenant_view, calendar_view: calendar_view,
+                              prev_month_path: tenant_spaces_path( tenant_id: tenant_view.id,
+                                                                  date: calendar_view.prev_month_string),
+                              next_month_path: tenant_spaces_path( tenant_id: tenant_view.id,
+                                                                  date: calendar_view.next_month_string)  %>
+    </div>
+    <% end %>
+  </div>
+
+</div>

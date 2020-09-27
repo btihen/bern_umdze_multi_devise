@@ -1,0 +1,68 @@
+<nav class="navbar has-background-light" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <%= link_to root_path, class: 'navbar-item' do %>
+    <h4 class="title is-4">Bern Umdze</h4>
+    <!--
+    <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+    -->
+    <% end %>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item">
+        <%= link_to "Home", root_path, class: 'navbar-item' %>
+      </a>
+
+      <!--
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More
+        </a>
+
+        <div class="navbar-dropdown">
+          <a class="navbar-item">
+            About
+          </a>
+          <a class="navbar-item">
+            Jobs
+          </a>
+          <a class="navbar-item">
+            Contact
+          </a>
+          <hr class="navbar-divider">
+          <a class="navbar-item">
+            Report an issue
+          </a>
+        </div>
+      </div>
+      -->
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <% if current_admin.nil? && current_umdze.nil? && current_patron.nil? %>
+            <%= link_to "Planner", new_admin_session_path, class: 'button is-info is-outlined' %>
+            <%= link_to new_umdze_session_path, class: 'button is-info is-outlined' do %>
+              <strong>Umdze</strong>
+            <% end %>
+            <%= link_to new_patron_session_path, class: 'button is-info is-outlined' do %>
+              <strong>Kalendar</strong>
+            <% end %>
+          <% else %>
+            <%= link_to("Logout", destroy_admin_session_path, class: 'button is-info is-outlined') if current_admin %>
+            <%= link_to("Logout", destroy_umdze_session_path, class: 'button is-info is-outlined') if current_umdze %>
+            <%= link_to("Logout", destroy_patron_session_path, class: 'button is-info is-outlined') if current_patron %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

@@ -5,16 +5,26 @@
   <title>BernUmdze</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
-
+  <%= action_cable_meta_tag %>
+  <%= stylesheet_pack_tag 'application' %>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 
-<body>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+<body data-controller="main">
+  <%= render 'layouts/navbar' %>
 
-  <%= yield %>
+  <div class="notification">
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+  </div>
+
+  <div class="container">
+    <%= yield %>
+  </div>
+
+  <%= render 'layouts/footer' %>
+
 </body>
 
 </html>
