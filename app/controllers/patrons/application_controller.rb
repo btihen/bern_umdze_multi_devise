@@ -1,5 +1,5 @@
 class Patrons::ApplicationController < ApplicationController
-  # before_action :authenticate_patron!, unless: :allowed_access
+  before_action :authenticate_patron!, unless: :allowed_access
 
   private
 

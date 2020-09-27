@@ -1,4 +1,4 @@
-class Patrons::CalendarView
+class Admins::CalendarView
 
   delegate :url_helpers, to: 'Rails.application.routes'
 

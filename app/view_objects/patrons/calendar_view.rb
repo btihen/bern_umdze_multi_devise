@@ -105,23 +105,16 @@ class Patrons::CalendarView
   end
 
   def new_button_html(space, date)
-    return ""  if user_cannot_reserve?(space, date)
-
-    %Q{ <a class="button is-success"
-            href="#{url_helpers.new_space_reservation_path(space_id: space.id,
-                                                           date: display_date(date))}">
-          Add Reservation
-        </a>
-      }
+    ""
   end
 
-  def user_cannot_reserve?(space, date)
-    !user_can_reserve?(space, date)
-  end
+  # def user_cannot_reserve?(space, date)
+  #   !user_can_reserve?(space, date)
+  # end
 
-  def user_can_reserve?(space, date)
-    false
-  end
+  # def user_can_reserve?(space, date)
+  #   false
+  # end
 
   def change_notice(reservation_date)
     return "" if reservation_date.change_notice.blank?
@@ -132,23 +125,16 @@ class Patrons::CalendarView
   end
 
   def edit_button_html(reservation_date)
-    return ""  if user_cannot_edit?(reservation_date)
-
-    %Q{ <br>
-        <a class="button is-primary is-pulled-right"
-            href="#{reservation_date.edit_reservation_path}">
-          Edit
-        </a>
-      }
+    ""
   end
 
-  def user_cannot_edit?(reservation_date)
-    !user_can_edit?(reservation_date)
-  end
+  # def user_cannot_edit?(reservation_date)
+  #   !user_can_edit?(reservation_date)
+  # end
 
-  def user_can_edit?(reservation_date)
-    false
-  end
+  # def user_can_edit?(reservation_date)
+  #   false
+  # end
 
   def choose_modal_form(date, reservations = [])
     # show/edit reservations in modal when there are existing reservations

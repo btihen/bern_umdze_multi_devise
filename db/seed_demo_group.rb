@@ -26,13 +26,13 @@ module SeedDemoGroup
       date_4  = date_0 + 4.days
       date_5  = date_0 + 5.days
 
-      hour_am_start = Time.new('09:30')
-      hour_am_end   = Time.new('12:30')
-      hour_pm_start = Time.new('13:30')
-      hour_pm_end   = Time.new('17:30')
-      hour_ev_start = Time.new('18:30')
-      hour_ev_end   = Time.new('20:30')
-binding.pry
+      hour_am_start = Time.parse('09:30')
+      hour_am_end   = Time.parse('12:30')
+      hour_pm_start = Time.parse('13:30')
+      hour_pm_end   = Time.parse('17:30')
+      hour_ev_start = Time.parse('18:30')
+      hour_ev_end   = Time.parse('20:30')
+
       # schedule events within spaces
       spaces.each do |space|
         FactoryBot.create(:reservation, space: space, event: events.first,  start_date: date_0, start_time: hour_ev_start, end_date: date_2, end_time: hour_pm_end)

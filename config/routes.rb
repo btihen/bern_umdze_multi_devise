@@ -32,12 +32,16 @@ Rails.application.routes.draw do
   end
 
   namespace :admins do
+    resources :spaces do
+      resources :reservations # restrict routes once all routes are known
+    end
     get 'home/index', as: :home
     # resource  :home,       only: [:index]
   end
   get '/admins', to: 'admins/home#index', as: :admins
 
   namespace :umdzes do
+    resources :reservations, only: [:edit, :update]
     get 'home/index', as: :home
     # resource  :home,       only: [:index]
   end

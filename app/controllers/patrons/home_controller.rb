@@ -2,7 +2,7 @@ class Patrons::HomeController < Patrons::ApplicationController
 
   def index
     spaces        = Space.all
-    user          = current_patron || Patron.first
+    user          = current_patron || Patron.first  # TODO: remove
     date          = params[:date].nil? ? Date.today : params[:date].to_s.to_date
 
     user_view     = Patrons::UserView.new(user)

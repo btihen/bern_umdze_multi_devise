@@ -1,4 +1,4 @@
-class Patrons::SpaceView < ViewObject
+class Umdzes::SpaceView < ViewObject
 
   # alias method allows use to rename view_object to a clear name without the initializer
   alias_method :space,      :root_model
@@ -21,9 +21,9 @@ class Patrons::SpaceView < ViewObject
   end
 
   def reservations(date_range=nil)
-    return ReservationView.collection(space.reservations) if date_range.nil?
+    return Umdzes::ReservationView.collection(space.reservations) if date_range.nil?
 
-    ReservationView.collection( space.reservations.in_date_range(date_range) )
+    Umdzes::ReservationView.collection( space.reservations.in_date_range(date_range) )
   end
 
 end

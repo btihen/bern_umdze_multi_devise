@@ -11,13 +11,16 @@ Reservation.destroy_all
 
 admin  = Admin.create(admins_name: "New Admin",
                       email: "admin@test.com",
-                      password: "Let-M3-In-N0w!", password_confirmation:  "Let-M3-In-N0w!")
+                      password: "Let-M3-In-N0w!",
+                      password_confirmation: "Let-M3-In-N0w!")
 umdze  = Umdze.create(umdzes_name: "Edit Umdze",
                       email: "umdze@test.com",
-                      password: "Let-M3-In-N0w!", password_confirmation:  "Let-M3-In-N0w!")
+                      password: "Let-M3-In-N0w!",
+                      password_confirmation: "Let-M3-In-N0w!")
 patron = Patron.create(# username: "view-patron",
                       email: "patron@test.com",
-                      password: "Let-M3-In-N0w!", password_confirmation:  "Let-M3-In-N0w!")
+                      password: "Let-M3-In-N0w!",
+                      password_confirmation: "Let-M3-In-N0w!")
 
 spaces = []
 spaces << FactoryBot.create(:space, space_name: "Center")

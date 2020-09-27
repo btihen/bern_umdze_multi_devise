@@ -1,0 +1,16 @@
+<p hidden id='umdze-edit-resevation-<%= reservation.id %>' class='pageName'>Edit Reservation <%= reservation.id %></p>
+
+<h1 class="is-size-4">
+  Edit<br>
+  <strong><%= event.event_name %></strong><br>
+  <small>Reservation from<br>
+  <strong><%= reservation_view.date_range_string %></strong></small>
+</h1>
+
+<%= form_for( reservation, local: true,
+              url: umdzes_reservation_path(reservation),    # PATH MUST BE SINGULAR!!!
+              id: "edit-reservation-form", class: "reservation" ) do |form|  %>
+
+<%= render 'form', form: form, reservation: reservation, space: space, spaces: spaces %>
+
+<% end %>

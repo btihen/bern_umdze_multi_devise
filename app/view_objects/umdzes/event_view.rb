@@ -1,4 +1,4 @@
-class Patrons::EventView < ViewObject
+class Umdzes::EventView < ViewObject
 
   # alias method allows use to rename view_object to a clear name without the initializer
   alias_method :event,      :root_model

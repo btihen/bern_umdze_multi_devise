@@ -1,4 +1,4 @@
-class Patrons::ReservationView < ViewObject
+class Umdzes::ReservationView < ViewObject
 
   # alias method allows use to rename view_object to a clear name without the initializer
   alias_method :reservation,      :root_model
@@ -42,11 +42,11 @@ class Patrons::ReservationView < ViewObject
   end
 
   def event
-    @event ||= EventView.new(reservation.event)
+    @event ||= Umdzes::EventView.new(reservation.event)
   end
 
   def space
-    @space ||= SpaceView.new(reservation.space)
+    @space ||= Umdzes::SpaceView.new(reservation.space)
   end
 
   def date_range_string
