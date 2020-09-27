@@ -1,4 +1,4 @@
-class Patrons::SpaceView < ViewObject
+class Admins::SpaceView < ViewObject
 
   # alias method allows use to rename view_object to a clear name without the initializer
   alias_method :space,      :root_model
@@ -7,15 +7,7 @@ class Patrons::SpaceView < ViewObject
   # alias_method :space_path, :root_model_path
 
   # delegate to model for attributes needed
-  delegate  :space_name, :time_zone, to: :space
-
-  def space_path
-    url_helpers.tenant_space_path(tenant_id: tenant.id, id: id)
-  end
-
-  def space_url
-    url_helpers.tenant_space_url(tenant_id: tenant.id, id: id)
-  end
+  delegate  :id, :space_name, :time_zone, to: :space
 
   # avoid possible nils
   def space_location
@@ -29,9 +21,9 @@ class Patrons::SpaceView < ViewObject
   end
 
   def reservations(date_range=nil)
-    return ReservationView.collection(space.reservations) if date_range.nil?
+    return Admins::ReservationView.collection(space.reservations) if date_range.nil?
 
-    ReservationView.collection( space.reservations.in_date_range(date_range) )
+    Admins::ReservationView.collection( space.reservations.in_date_range(date_range) )
   end
 
 end

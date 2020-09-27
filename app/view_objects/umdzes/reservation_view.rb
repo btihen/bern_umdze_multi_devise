@@ -52,9 +52,9 @@ class Patrons::ReservationView < ViewObject
   def date_range_string
     @date_range_string ||=
       if is_event_one_day?
-        "#{start_date.strftime("%Y-%m-%d")} (#{start_time_slot.start_time} - #{end_time_slot.end_time})"
+        "#{start_date_time.strftime("%Y-%m-%d")} (#{start_date_time.strftime("%H-%M")} - #{end_date_time.strftime("%H-%M")})"
       else
-        "#{start_date.strftime("%Y-%m-%d")} (#{start_time_slot.start_time}) -- #{end_date.strftime("%Y-%m-%d")} (#{end_time_slot.finish_time})"
+        "#{start_date_time.strftime("%Y-%m-%d (%H:%M)")} - #{end_date_time.strftime("%Y-%m-%d (%H:%M)")}"
       end
   end
 

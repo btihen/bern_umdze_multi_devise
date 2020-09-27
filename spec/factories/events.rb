@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :event do
-    event_name { "MyString" }
+    event_name { Faker::Educator.subject }
   end
 end

@@ -42,19 +42,19 @@ class Patrons::ReservationView < ViewObject
   end
 
   def event
-    @event ||= EventView.new(reservation.event)
+    @event ||= Patrons::EventView.new(reservation.event)
   end
 
   def space
-    @space ||= SpaceView.new(reservation.space)
+    @space ||= Patrons::SpaceView.new(reservation.space)
   end
 
   def date_range_string
     @date_range_string ||=
       if is_event_one_day?
-        "#{start_date.strftime("%Y-%m-%d")} (#{start_time_slot.start_time} - #{end_time_slot.end_time})"
+        "#{start_date_time.strftime("%a %e.%b")} (#{start_date_time.strftime("%H:%M")} - #{end_date_time.strftime("%H:%M")})"
       else
-        "#{start_date.strftime("%Y-%m-%d")} (#{start_time_slot.start_time}) -- #{end_date.strftime("%Y-%m-%d")} (#{end_time_slot.finish_time})"
+        "#{start_date_time.strftime("%a %e.%b (%H:%M)")} - #{end_date_time.strftime("%a %e.%b (%H:%M)")}"
       end
   end
 
@@ -81,40 +81,4 @@ class Patrons::ReservationView < ViewObject
     return true   if is_multi_day_event? && (date == end_date)
     false
   end
-
-  # def reservation_end_date
-  #   # reservation.date
-  #   # I18n.l(reservation.date)
-  #   reservation.end_date.in_time_zone(space.time_zone)
-  #   # Time.at(1364046539).in_time_zone("Eastern Time (US & Canada)").strftime("%m/%d/%y %I:%M %p")
-  # end
-
-  # def reservation_start_date
-  #   # reservation.date
-  #   # I18n.l(reservation.date)
-  #   reservation.start_date.in_time_zone(space.time_zone)
-  #   # Time.at(1364046539).in_time_zone("Eastern Time (US & Canada)").strftime("%m/%d/%y %I:%M %p")
-  # end
-
-  # def date_time_range
-  #   if is_event_one_time_slot?
-  #     build_date_time_range(start_date, start_time_slot.begin_time,
-  #                           start_date, start_time_slot.end_time)
-  #   elsif is_event_one_day?
-  #     build_date_time_range(start_date, start_time_slot.begin_time,
-  #                           start_date, end_time_slot.end_time)
-  #   else
-  #     build_date_time_range(start_date, start_time_slot.begin_time,
-  #                           end_date,   end_time_slot.end_time)
-  #   end
-  # end
-
-  # def build_date_time_range(start_date, start_time, end_date, end_time)
-  #   (build_date_time(start_date, start_time)..build_date_time(end_date, end_time))
-  # end
-
-  # def build_date_time(date, time)
-  #   DateTime.new(date.year, date.month, date.day, time.hour, time.min)
-  # end
-
 end

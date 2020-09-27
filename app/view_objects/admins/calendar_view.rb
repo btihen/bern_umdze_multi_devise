@@ -14,7 +14,7 @@ class Patrons::CalendarView
   public
   attr_reader :year_number, :month_number
 
-  def initialize(tenant, user, date = Date.today)
+  def initialize(user, date = Date.today)
     @user               = user
     @today              = Date.today
     @date_of_interest   = date
@@ -46,7 +46,7 @@ class Patrons::CalendarView
   def display_date(date)
     return ""  if date.blank?
 
-    date.strftime("%Y-%m-%d")
+    date.strftime("%e.%b.%Y")
   end
 
   def date_range
@@ -76,7 +76,7 @@ class Patrons::CalendarView
           <dl class="is-medium reservation">
             <dt>
               #{"<big><b>CANCELLED</b></big><br>" if dr.is_cancelled? }
-              #{"<strike>" if dr.is_cancelled?}#{dr.start_time_slot}#{"</strike>" if dr.is_cancelled?}
+              #{"<strike>" if dr.is_cancelled?}#{dr.date_range_string}#{"</strike>" if dr.is_cancelled?}
             </dt>
             <dd>
               #{"<strike>" if dr.is_cancelled?}Event: <big><b>#{dr.event_name}</b></big><br>
@@ -89,13 +89,13 @@ class Patrons::CalendarView
     end
 
     %Q{ <section class="modal-card-body">
-          <div class="content is-medium has-text-centered">
-            Space: <b>#{space.space_name}</b><br>
-            Date: <b>#{display_date(date)}</b>
-          </div>
-          <hr>
           <div class="content is-medium has-text-left">
             #{items.join}
+          </div>
+          <hr>
+          <div class="content is-medium has-text-centered">
+            Location: <b>#{space.space_name}</b><br>
+            Date: <b>#{display_date(date)}</b>
           </div>
         </section>
         <footer class="modal-card-foot">
@@ -121,7 +121,6 @@ class Patrons::CalendarView
 
   def user_can_reserve?(space, date)
     true
-    # space.tenant.is_demo? || (user.tenant.id == space.tenant.id)
   end
 
   def change_notice(reservation_date)
@@ -149,8 +148,6 @@ class Patrons::CalendarView
 
   def user_can_edit?(reservation_date)
     true
-    # reservation_date.tenant.is_demo? ||
-    #   (user.tenant.id == reservation_date.tenant.id)
   end
 
   def choose_modal_form(date, reservations = [])

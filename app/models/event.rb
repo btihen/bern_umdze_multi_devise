@@ -1,6 +1,6 @@
 class Event < ApplicationRecord
-  has_many :reservations
-  has_many :spaces, through: reservations
+  has_many :reservations, inverse_of: :event, dependent: :destroy
+  has_many :spaces, through: :reservations, source: :space
 
-  validates :space_name
+  validates :event_name, presence: true
 end

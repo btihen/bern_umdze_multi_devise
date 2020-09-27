@@ -14,6 +14,16 @@ class Reservation < ApplicationRecord
   validates :start_date_time, presence: true
   validates :end_date_time,   presence: true
 
+  scope :in_date_range, ->(date_range) {
+                          includes(:event, :space)
+                          .where("start_date >= ?", date_range.first)
+                          .where("end_date <= ?", date_range.last)
+                        }
+  scope :space_next,  ->(space_ids, date_time) {
+                          where(space_id: space_ids)
+                          .where("start_date_time > ?", date_time)
+                          .limit(1)
+                        }
   private
 
   # https://stackoverflow.com/questions/12181444/ruby-combine-date-and-time-objects-into-a-datetime

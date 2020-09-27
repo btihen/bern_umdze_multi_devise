@@ -7,15 +7,7 @@ class Patrons::SpaceView < ViewObject
   # alias_method :space_path, :root_model_path
 
   # delegate to model for attributes needed
-  delegate  :space_name, :time_zone, to: :space
-
-  def space_path
-    url_helpers.tenant_space_path(tenant_id: tenant.id, id: id)
-  end
-
-  def space_url
-    url_helpers.tenant_space_url(tenant_id: tenant.id, id: id)
-  end
+  delegate  :id, :space_name, :time_zone, to: :space
 
   # avoid possible nils
   def space_location
@@ -25,13 +17,13 @@ class Patrons::SpaceView < ViewObject
   # convert / invoke time-zone?
 
   def events
-    EventView.collection(space.events)
+    Patrons::EventView.collection(space.events)
   end
 
   def reservations(date_range=nil)
-    return ReservationView.collection(space.reservations) if date_range.nil?
+    return Patrons::ReservationView.collection(space.reservations) if date_range.nil?
 
-    ReservationView.collection( space.reservations.in_date_range(date_range) )
+    Patrons::ReservationView.collection( space.reservations.in_date_range(date_range) )
   end
 
 end

@@ -9,14 +9,6 @@ class Patrons::SpaceView < ViewObject
   # delegate to model for attributes needed
   delegate  :space_name, :time_zone, to: :space
 
-  def space_path
-    url_helpers.tenant_space_path(tenant_id: tenant.id, id: id)
-  end
-
-  def space_url
-    url_helpers.tenant_space_url(tenant_id: tenant.id, id: id)
-  end
-
   # avoid possible nils
   def space_location
     space.space_location.to_s

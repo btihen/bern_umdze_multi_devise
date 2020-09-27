@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :space do
-    location_name { "MyString" }
+    space_name { Faker::Educator.campus }
   end
 end
