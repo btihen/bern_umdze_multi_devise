@@ -1,5 +1,5 @@
 class Admins::ApplicationController < ApplicationController
-  before_action :authenticate_admin!, unless: :allowed_access
+  # before_action :authenticate_admin!, unless: :allowed_access
 
   private
 

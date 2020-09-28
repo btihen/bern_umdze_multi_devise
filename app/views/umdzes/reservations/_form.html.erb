@@ -14,18 +14,11 @@
   <div class="card-content">
 
     <div class="field is-horizontal">
-      <div class="field-label is-normal">Space</div>
+      <div class="field-label is-normal">Umdze</div>
       <div class="field-body">
         <div class="field has-addons is-grouped is-grouped-multiline">
-          <div class="control">
-            <%= form.collection_select :space_id, spaces,
-                      :id, :space_name, {selected: reservation.space.id},
-                      {class: 'select'} %>
-            <p class="help">Required</p>
-            <%= error_message_on(form.object, :space_id) %>
-          </div>
           <div class="control has-icons-left">
-            <%= form.text_field :host_name, placeholder: "Umdze (Optional)", class: "input" %>
+            <%= form.text_field :host_name, placeholder: "(Please Volunteer)", class: "input" %>
             <span class="icon is-small is-left">
               <i class="fas fa-user"></i>
             </span>
@@ -93,7 +86,7 @@
         <div class="field has-addons is-grouped is-grouped-multiline">
           <div class="control">
             <%= form.text_area :alert_notice, class: "textarea" %>
-            <%# form.text_area :change_notice, value: reservation.change_notice, class: "textarea" %>
+            <%# form.text_area :alert_notice, value: reservation.alert_notice, class: "textarea" %>
             <p class="help">Explain changes or needed info about the event</p>
             <%= error_message_on(form.object, :alert_notice) %>
           </div>

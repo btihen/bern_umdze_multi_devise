@@ -33,43 +33,52 @@
           <%# date-item has reservation and within month of interest - with tool-tips and modal pop-ups %>
           <% if calendar_view.date_in_month_of_interest?(day) &&
                       calendar_view.date_has_reservation?(day, reservations) %>
-            <button data-html="true" data-href="https://randomuser.me/api/?results=10" data-modal="<%= calendar_view.choose_reservations_modal_html(space_view, day, reservations) %>" data-target="<%= calendar_view.choose_modal_form(day, reservations) %>" data-tooltip="<%= calendar_view.date_item_tooltip_data(day, reservations) %>" class="date-item <%= calendar_view.date_item_class_string(day, reservations) %>">
-              <%= day.mday %>
-            </button>
+          <button data-html="true"
+                  data-href="https://randomuser.me/api/?results=10"
+                  data-modal="<%= calendar_view.choose_reservations_modal_html(space_view, day, reservations) %>"
+                  data-target="<%= calendar_view.choose_modal_form(day, reservations) %>"
+                  data-tooltip="<%= calendar_view.date_item_tooltip_data(day, reservations) %>"
+                  class="date-item <%= calendar_view.date_item_class_string(day, reservations) %>">
+            <%= day.mday %>
+          </button>
 
           <%# admin is allowed to add new events when today is empty (today has another css so it needs a new case) %>
           <% elsif calendar_view.date_in_month_of_interest?(day) && day == Date.today %>
           <%# date-item button for a new link %>
-            <%= link_to day.mday,
-                        new_space_reservation_path(space_id: space_view.id, date: calendar_view.display_date(day)),
-                        class: "date-item button is-light is-today" %>
+          <%= link_to day.mday,
+                      new_admins_reservation_path(space_id: space_view.id,
+                                                  date: calendar_view.display_date(day)),
+                      class: "date-item button is-light is-today" %>
 
 
           <%# admin is allowed to add new events on empty days not today %>
           <% elsif calendar_view.date_in_month_of_interest?(day) %>
-            <%# date-item button for a new link %>
-            <%= link_to day.mday,
-                        new_space_reservation_path(space_id: space_view.id, date: calendar_view.display_date(day)),
-                        class: "date-item button is-light" %>
+          <%# date-item button for a new link %>
+          <%= link_to day.mday,
+                      new_admins_reservation_path(space_id: space_view.id,
+                                                  date: calendar_view.display_date(day)),
+                      class: "date-item button is-light" %>
 
           <%# date-item has reservation and NOT in month of interest - needs is-active for green dot %>
           <%#  - get tool-tips working %>
           <% elsif !calendar_view.date_in_month_of_interest?(day) &&
                       calendar_view.date_has_reservation?(day, reservations) %>
-            <button data-html="true" data-tooltip="<%= calendar_view.date_item_tooltip_data(day, reservations) %>" class="date-item modal-button is-active">
-              <%= day.mday %>
-            </button>
+          <button data-html="true"
+                  data-tooltip="<%= calendar_view.date_item_tooltip_data(day, reservations) %>"
+                  class="date-item modal-button is-active">
+            <%= day.mday %>
+          </button>
 
           <% elsif day == Date.today %>
-            <div class="date-item is-today">
-              <%= day.mday %>
-            </div>
+          <div class="date-item is-today">
+            <%= day.mday %>
+          </div>
 
           <%# date-item without event and user without permission to make new events %>
           <% else %>
-            <div class="date-item">
-              <%= day.mday %>
-            </div>
+          <div class="date-item">
+            <%= day.mday %>
+          </div>
           <% end %>
 
         </div>

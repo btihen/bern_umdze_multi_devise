@@ -1,5 +1,5 @@
 class Umdzes::ApplicationController < ApplicationController
-  before_action :authenticate_umdze!, unless: :allowed_access
+  # before_action :authenticate_umdze!, unless: :allowed_access
 
   private
 

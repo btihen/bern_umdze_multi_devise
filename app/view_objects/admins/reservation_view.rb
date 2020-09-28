@@ -12,22 +12,22 @@ class Admins::ReservationView < ViewObject
   # alias_method :reservation_path, :root_model_path
   # so creating paths with url_helpers
   def reservation_path
-    url_helpers.space_reservation_path(space_id: space.id, id: id)
+    url_helpers.admins_reservation_path(id: id)
   end
 
   def edit_reservation_path
-    url_helpers.edit_space_reservation_path(space_id: space.id, id: id)
+    url_helpers.edit_admins_reservation_path(id: id)
   end
 
   def reservation_url
-    url_helpers.space_reservation_url(space_id: space.id, id: id)
+    url_helpers.admins_reservation_url(id: id)
   end
 
   # methods for attribuits
   def alert_notice
     reservation.alert_notice || ""
   end
-  alias_method :change_notice, :alert_notice
+  # alias_method :change_notice, :alert_notice
 
   def host_name
     @host_name ||= reservation.host_name || ""
@@ -52,7 +52,7 @@ class Admins::ReservationView < ViewObject
   def date_range_string
     @date_range_string ||=
       if is_event_one_day?
-        "#{start_date_time.strftime("%Y-%m-%d")} (#{start_date_time.strftime("%H:%M")"} - #{end_date_time.strftime("%H:%M")})"
+        "#{start_date_time.strftime("%Y-%m-%d")} (#{start_date_time.strftime("%H:%M")} - #{end_date_time.strftime("%H:%M")})"
       else
         "#{start_date_time.strftime("%Y-%m-%d (%H:%M)")} - #{end_date_time.strftime("%Y-%m-%d (%H:%M)")}"
       end

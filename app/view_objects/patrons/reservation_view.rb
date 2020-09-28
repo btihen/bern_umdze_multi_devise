@@ -7,27 +7,27 @@ class Patrons::ReservationView < ViewObject
   delegate  :start_date_time, :end_date_time, :start_date, :end_date,
             :is_cancelled?, to: :reservation
 
-  # can't use root_model aliases with nested urls, ie:
-  # alias_method :reservation_url,  :root_model_url
-  # alias_method :reservation_path, :root_model_path
-  # so creating paths with url_helpers
-  def reservation_path
-    url_helpers.space_reservation_path(space_id: space.id, id: id)
-  end
+  # # can't use root_model aliases with nested urls, ie:
+  # # alias_method :reservation_url,  :root_model_url
+  # # alias_method :reservation_path, :root_model_path
+  # # so creating paths with url_helpers
+  # def reservation_path
+  #   url_helpers.patrons_reservation_path(space_id: space.id, id: id)
+  # end
 
-  def edit_reservation_path
-    url_helpers.edit_space_reservation_path(space_id: space.id, id: id)
-  end
+  # def edit_reservation_path
+  #   url_helpers.edit_patrons_reservation_path(space_id: space.id, id: id)
+  # end
 
-  def reservation_url
-    url_helpers.space_reservation_url(space_id: space.id, id: id)
-  end
+  # def reservation_url
+  #   url_helpers.patrons_reservation_url(space_id: space.id, id: id)
+  # end
 
   # methods for attribuits
   def alert_notice
     reservation.alert_notice || ""
   end
-  alias_method :change_notice, :alert_notice
+  # alias_method :change_notice, :alert_notice
 
   def host_name
     @host_name ||= reservation.host_name || ""
